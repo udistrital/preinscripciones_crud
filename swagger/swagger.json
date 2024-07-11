@@ -1,0 +1,32 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/": {
+            "get": {
+                "operationId": "AppController_getHello",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "info": {
+        "title": "Preinscripciones CRUD",
+        "description": "API para realizar la gestión de preinscripciones a nivel de crud",
+        "version": "1.0",
+        "contact": {}
+    },
+    "tags": [
+        {
+            "name": "preinscripciones",
+            "description": ""
+        }
+    ],
+    "servers": [],
+    "components": {
+        "schemas": {}
+    }
+}
