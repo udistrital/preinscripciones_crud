@@ -1,7 +1,8 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Query, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { PreinscripcionesService } from 'src/services/preinscripciones.service';
 import { PreinscripcionesDto } from 'src/models/preincripciones.dtoSchema';
+import { FilterDto } from 'src/filters/dto/filter.dto';
 
 @ApiTags('preinscripciones')
 @Controller('preinscripciones')
@@ -27,5 +28,81 @@ export class PreinscripcionesController {
                 Data: error.message
             })
         });
+    }
+
+    @Get()
+    async getAll(@Res() res, @Query() filterDto: FilterDto) {
+        this.preinscripcionesService.getAll(filterDto).then(horarioSemestre => {
+            res.status(HttpStatus.OK).json({
+                Success: true,
+                Status: HttpStatus.OK,
+                Message: 'Request successful',
+                Data: horarioSemestre
+            })
+        }).catch(error => {
+            res.status(HttpStatus.NOT_FOUND).json({
+                Success: false,
+                Status: HttpStatus.NOT_FOUND,
+                Message: 'Error service GetAll: The request contains an incorrect parameter or no record exist',
+                Data: error.message
+            })
+        })
+    }
+
+    @Get('/:_id')
+    async getById(@Res() res, @Param('_id') _id: string) {
+        this.preinscripcionesService.getById(_id).then(horarioSemestre => {
+            res.status(HttpStatus.OK).json({
+                Success: true,
+                Status: HttpStatus.OK,
+                Message: 'Request successful',
+                Data: horarioSemestre
+            })
+        }).catch(error => {
+            res.status(HttpStatus.NOT_FOUND).json({
+                Success: false,
+                Status: HttpStatus.NOT_FOUND,
+                Message: 'Error service GetOne: The request contains an incorrect parameter or no record exist',
+                Data: error.message
+            })
+        })
+    }
+
+    @Put('/:_id')
+    async put(@Res() res, @Param('_id') _id: string, @Body() preinscripcionesDto: PreinscripcionesDto) {
+        this.preinscripcionesService.put(_id, preinscripcionesDto).then(horarioSemestre => {
+            res.status(HttpStatus.OK).json({
+                Success: true,
+                Status: HttpStatus.OK,
+                Message: 'Update successful',
+                Data: horarioSemestre
+            })
+        }).catch(error => {
+            res.status(HttpStatus.BAD_REQUEST).json({
+                Success: false,
+                Status: HttpStatus.BAD_REQUEST,
+                Message: 'Error service Put: The request contains an incorrect data type or an invalid parameter',
+                Data: error.message
+            })
+        })
+    }
+
+    @Delete('/:_id')
+    async delete(@Res() res, @Param('_id') _id: string) {
+        this.preinscripcionesService.delete(_id).then(horarioSemestre => {
+            res.status(HttpStatus.OK).json({
+                Success: true,
+                Status: HttpStatus.OK,
+                Message: 'Delete successful',
+                Data: horarioSemestre
+            })
+        }).catch(error => {
+            res.status(HttpStatus.NOT_FOUND).json({
+                Success: false,
+                Status: HttpStatus.NOT_FOUND,
+                Message: 'Error service Delete: Request contains incorrect parameter',
+                Data: error.message
+            })
+        })
     }
 }

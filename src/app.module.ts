@@ -10,9 +10,6 @@ import { environment } from './config/configuration';
 import { Preinscripciones, PreinscripcionesSchema } from './models/preincripciones.dtoSchema';
 import { TipoEstado, TipoEstadoSchema } from './models/tipo_estado.dtoSchema';
 
-
-console.log(`mongodb://${environment.USER}:${environment.PASS}@` +
-      `${environment.HOST}:${environment.PORT}/${environment.DB}?authSource=${environment.AUTH_DB}`)
 @Module({
   imports: [
     MongooseModule.forRoot(`mongodb://${environment.USER}:${environment.PASS}@` +

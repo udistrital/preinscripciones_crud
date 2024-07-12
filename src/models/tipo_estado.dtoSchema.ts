@@ -21,7 +21,7 @@ export class TipoEstadoDto{
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
-@Schema({ collection: 'preinscripciones' })
+@Schema({ collection: 'tipo_estado' })
 export class TipoEstado extends Document {
     _id: ObjectId;
 
