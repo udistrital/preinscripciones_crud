@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { ObjectId } from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
 export class PreinscripcionesDto{
     readonly _id: ObjectId
@@ -40,7 +40,7 @@ export class Preinscripciones extends Document {
     @Prop({ required: true })
     Id_estudiante: number
 
-    @Prop({ required: true })
+    @Prop({ required: true, type: mongoose.Schema.Types.ObjectId})
     Id_espacio_academico: ObjectId
 
     @Prop({ required: true })
@@ -52,7 +52,7 @@ export class Preinscripciones extends Document {
     @Prop({ required: true })
     Activo: boolean;
 
-    @Prop({ required: true })
+    @Prop({ required: true, type: mongoose.Schema.Types.ObjectId })
     Id_tipo_estado: ObjectId
 
     @Prop({ required: true })
@@ -61,3 +61,5 @@ export class Preinscripciones extends Document {
     @Prop({ required: true })
     Fecha_modificacion: Date;
 }
+
+export const PreinscripcionesSchema = SchemaFactory.createForClass(Preinscripciones)
