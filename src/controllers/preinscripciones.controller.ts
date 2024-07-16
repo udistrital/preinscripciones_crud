@@ -32,12 +32,12 @@ export class PreinscripcionesController {
 
     @Get()
     async getAll(@Res() res, @Query() filterDto: FilterDto) {
-        this.preinscripcionesService.getAll(filterDto).then(horarioSemestre => {
+        this.preinscripcionesService.getAll(filterDto).then(preinscripcions => {
             res.status(HttpStatus.OK).json({
                 Success: true,
                 Status: HttpStatus.OK,
                 Message: 'Request successful',
-                Data: horarioSemestre
+                Data: preinscripcions
             })
         }).catch(error => {
             res.status(HttpStatus.NOT_FOUND).json({
@@ -51,12 +51,12 @@ export class PreinscripcionesController {
 
     @Get('/:_id')
     async getById(@Res() res, @Param('_id') _id: string) {
-        this.preinscripcionesService.getById(_id).then(horarioSemestre => {
+        this.preinscripcionesService.getById(_id).then(preinscripcions => {
             res.status(HttpStatus.OK).json({
                 Success: true,
                 Status: HttpStatus.OK,
                 Message: 'Request successful',
-                Data: horarioSemestre
+                Data: preinscripcions
             })
         }).catch(error => {
             res.status(HttpStatus.NOT_FOUND).json({
@@ -70,12 +70,12 @@ export class PreinscripcionesController {
 
     @Put('/:_id')
     async put(@Res() res, @Param('_id') _id: string, @Body() preinscripcionesDto: PreinscripcionesDto) {
-        this.preinscripcionesService.put(_id, preinscripcionesDto).then(horarioSemestre => {
+        this.preinscripcionesService.put(_id, preinscripcionesDto).then(preinscripcions => {
             res.status(HttpStatus.OK).json({
                 Success: true,
                 Status: HttpStatus.OK,
                 Message: 'Update successful',
-                Data: horarioSemestre
+                Data: preinscripcions
             })
         }).catch(error => {
             res.status(HttpStatus.BAD_REQUEST).json({
@@ -89,12 +89,12 @@ export class PreinscripcionesController {
 
     @Delete('/:_id')
     async delete(@Res() res, @Param('_id') _id: string) {
-        this.preinscripcionesService.delete(_id).then(horarioSemestre => {
+        this.preinscripcionesService.delete(_id).then(preinscripcions => {
             res.status(HttpStatus.OK).json({
                 Success: true,
                 Status: HttpStatus.OK,
                 Message: 'Delete successful',
-                Data: horarioSemestre
+                Data: preinscripcions
             })
         }).catch(error => {
             res.status(HttpStatus.NOT_FOUND).json({
