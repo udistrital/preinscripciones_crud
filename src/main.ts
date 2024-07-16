@@ -3,11 +3,14 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
+import { environment } from './config/configuration';
 
 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.enableCors();
 
   const config = new DocumentBuilder()
     .setTitle('Preinscripciones CRUD')
@@ -21,6 +24,6 @@ async function bootstrap() {
   fs.writeFileSync('./swagger/swagger.yml', yaml.dump(document));
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  await app.listen(parseInt(environment.HTTP_PORT, 10) || 8080);
 }
 bootstrap();
