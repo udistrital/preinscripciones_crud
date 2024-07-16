@@ -1,0 +1,286 @@
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /preinscripciones:
+    post:
+      operationId: PreinscripcionesController_post
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreinscripcionesDto'
+      responses:
+        '201':
+          description: ''
+      tags: &ref_0
+        - preinscripciones
+    get:
+      operationId: PreinscripcionesController_getAll
+      parameters:
+        - name: query
+          required: false
+          in: query
+          description: query - Filter. e.g. col1:v1,col2:v2 …
+          schema:
+            type: string
+        - name: fields
+          required: false
+          in: query
+          description: fields - Fields returned. e.g. col1,col2 …
+          schema:
+            type: string
+        - name: sortby
+          required: false
+          in: query
+          description: sortby - Sorted-by fields. e.g. col1,col2 …
+          schema:
+            type: string
+        - name: order
+          required: false
+          in: query
+          description: >-
+            order - Order corresponding to each sortby field, if single value,
+            apply to all sortby fields. e.g. desc,asc …
+          schema:
+            type: string
+        - name: limit
+          required: false
+          in: query
+          description: limit - Limit the size of result set. Must be an integer
+          schema:
+            type: string
+        - name: offset
+          required: false
+          in: query
+          description: offset - Start position of result set. Must be an integer
+          schema:
+            type: string
+        - name: populate
+          required: false
+          in: query
+          description: populate - show subqueries. Must be a boolean
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags: *ref_0
+  /preinscripciones/{_id}:
+    get:
+      operationId: PreinscripcionesController_getById
+      parameters:
+        - name: _id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags: *ref_0
+    put:
+      operationId: PreinscripcionesController_put
+      parameters:
+        - name: _id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreinscripcionesDto'
+      responses:
+        '200':
+          description: ''
+      tags: *ref_0
+    delete:
+      operationId: PreinscripcionesController_delete
+      parameters:
+        - name: _id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags: *ref_0
+  /tipo-estado:
+    post:
+      operationId: TipoEstadoController_post
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TipoEstadoDto'
+      responses:
+        '201':
+          description: ''
+      tags: &ref_1
+        - tipo-estado
+    get:
+      operationId: TipoEstadoController_getAll
+      parameters:
+        - name: query
+          required: false
+          in: query
+          description: query - Filter. e.g. col1:v1,col2:v2 …
+          schema:
+            type: string
+        - name: fields
+          required: false
+          in: query
+          description: fields - Fields returned. e.g. col1,col2 …
+          schema:
+            type: string
+        - name: sortby
+          required: false
+          in: query
+          description: sortby - Sorted-by fields. e.g. col1,col2 …
+          schema:
+            type: string
+        - name: order
+          required: false
+          in: query
+          description: >-
+            order - Order corresponding to each sortby field, if single value,
+            apply to all sortby fields. e.g. desc,asc …
+          schema:
+            type: string
+        - name: limit
+          required: false
+          in: query
+          description: limit - Limit the size of result set. Must be an integer
+          schema:
+            type: string
+        - name: offset
+          required: false
+          in: query
+          description: offset - Start position of result set. Must be an integer
+          schema:
+            type: string
+        - name: populate
+          required: false
+          in: query
+          description: populate - show subqueries. Must be a boolean
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags: *ref_1
+  /tipo-estado/{_id}:
+    get:
+      operationId: TipoEstadoController_getById
+      parameters:
+        - name: _id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags: *ref_1
+    put:
+      operationId: TipoEstadoController_put
+      parameters:
+        - name: _id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TipoEstadoDto'
+      responses:
+        '200':
+          description: ''
+      tags: *ref_1
+    delete:
+      operationId: TipoEstadoController_delete
+      parameters:
+        - name: _id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags: *ref_1
+info:
+  title: Preinscripciones CRUD
+  description: API para realizar la gestión de preinscripciones a nivel de crud
+  version: '1.0'
+  contact: {}
+tags:
+  - name: preinscripciones
+    description: ''
+servers: []
+components:
+  schemas:
+    PreinscripcionesDto:
+      type: object
+      properties:
+        Id_estudiante:
+          type: number
+        Id_espacio_academico:
+          type: object
+        Id_periodo:
+          type: number
+        Id_proyecto:
+          type: number
+        Activo:
+          type: boolean
+        Id_tipo_estado:
+          type: object
+        Fecha_creacion:
+          format: date-time
+          type: string
+        Fecha_modificacion:
+          format: date-time
+          type: string
+      required:
+        - Id_estudiante
+        - Id_espacio_academico
+        - Id_periodo
+        - Id_proyecto
+        - Activo
+        - Id_tipo_estado
+        - Fecha_creacion
+        - Fecha_modificacion
+    TipoEstadoDto:
+      type: object
+      properties:
+        Nombre:
+          type: string
+        Activo:
+          type: boolean
+        Fecha_creacion:
+          format: date-time
+          type: string
+        Fecha_modificacion:
+          format: date-time
+          type: string
+      required:
+        - Nombre
+        - Activo
+        - Fecha_creacion
+        - Fecha_modificacion
